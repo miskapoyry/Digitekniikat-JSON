@@ -6,10 +6,17 @@
     <title>JSON Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- HEADIIN TUOTU JS FILE, JOTTA SYNTAKSI OLISI YKSINKERTAISEMPAA -->
+    <script src="oma.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-    <div id="vastaus">
-        
-    </div>
+<body class="container">
+    <!-- TÄTÄ DIVIÄ KIRJOITAAN JS FILESSÄ -->
+    <div id="vastaus"></div>
+
+    <!-- TÄSSÄ HAETAAN SKRIPTI FETCHAA DATA. HUOMAA, ETTÄ MODULAARISUUDEN VUOKSI FETCHAA DATA SITTEN KUTSUU ERIKSEEN KERRO FUNKTIOTA, JOKA TEKEE AIEMPAAN DIVIIN VASTAUKSEN -->
+    <script>
+        fetchaaData();
+    </script>
 </body>

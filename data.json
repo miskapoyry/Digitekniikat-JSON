@@ -1,6 +1,6 @@
 {
     "otsikko" : "JSON-datan käsittelyä",
-    "kuvaus" : "Tällä sivustolle haetaan JSON-muotoista dataa",
+    "kuvaus" : "Tälle sivustolle haetaan JSON-muotoista dataa",
     "kuva" : "https://jaakkola.github.io/json/digi.JPG",
     "opintojakso" : {
         "nimi" : "Digitekniikat",
@@ -19,7 +19,7 @@
             },
             {
                 "aihe" : "wordpress",
-                "linkki" : "https://https://wordpress.com/"
+                "linkki" : "https://wordpress.com/"
             },
             {
                 "aihe" : "bootstrap",
