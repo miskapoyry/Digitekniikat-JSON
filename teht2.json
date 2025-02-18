@@ -1,0 +1,19 @@
+{
+    "toteutus" : {
+        "nimi" : "Digitekniikat",
+        "kesto_viikkoina" : 8,
+        "alku_pvm" : "2025-01-13",
+        "loppu_pvm" : "2025-03-14",
+        "kuva" : "https://images.pexels.com/photos/159213/hall-congress-architecture-building-159213.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+        "osallistujat" : {
+            "lukumaara" : 5,
+            "nimi" : [
+                "Matti Mallikas",
+                "Keijo Koodari",
+                "Outi Oppilas",
+                "Harri Häirikkö",
+                "Teija Tietäjä"
+            ]
+        }
+    }
+}
