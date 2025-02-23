@@ -20,30 +20,67 @@ function fetchEvents() {
 
 function tapahtumat(data) {
 
-    var teksti = "";
-    teksti = "<h1>Tampereella tapahtuu</h1><br />";
-    
-    // LOOPATAAN JSON RESPONSEN LÄPI JA LAITETAAN JOKAISEN SILMUKAN SISÄLTÖ TEKSTIIN
-    for (var i = 0; i < data.length; i++) {
+  var teksti = "";
+  teksti = "<h1>Tampereella tapahtuu</h1><br />";
+
+  // LOOPATAAN JSON RESPONSEN LÄPI JA LAITETAAN JOKAISEN SILMUKAN SISÄLTÖ TEKSTIIN
+  for (var i = 0; i < data.length; i++) {
     // DATA.TITLE HAKEE OTSIKON
     teksti = teksti + "<h3>" + data[i].title + "</h3>";
     // DATA.DESCRIPTION HAKEE KUVAUKSEN
     teksti = teksti + "<p>" + data[i].description + "</p>";
     // DATA.URL HAKEE TAPAHTUMAN URL
     teksti = teksti + "<p> <a href=" + data[i].url + ">" + data[i].url + "</a></p><hr />";
-    }
-    
-    // TEKSTI LAITETAAN HTML SIVUN DIVIIN, JOKA ID ON "VASTAUS"
-    document.getElementById("vastaus").innerHTML = teksti;
-    }
+  }
+
+  // TEKSTI LAITETAAN HTML SIVUN DIVIIN, JOKA ID ON "VASTAUS"
+  document.getElementById("vastaus").innerHTML = teksti;
+}
 
 // MÄÄRITELLÄÄN LETILLÄ KAKSI MUUTTUJAA, JOTKA TÄYTETÄÄN FUNKTIOISSA
 
 let helData = null;
 let treData = null;
 
+// TÄSSÄ KOHDASSA ON TOTEUTETTU KAKSI ASYNC FUNKTIOTA (VAIHTELUKSI "PERIINTEISEEN TAPAAN")
+// PERINTEISET MYÖS TOTEUTETTU ASYNCIEN ALAPUOLELLA
+
+async function fetchWeatherHel() {
+  // TRY LOHKOA YRITETÄÄN SUORITTAA, SIELLÄ ENSIN DATA FETCHATAAN JA TEHDÄÄN JSONINKSI, LAITETAAN MUUTTUJAAN helData JA KUTSUTAAN DATALLA SAA FUNKTIOTA
+  // ASYNCISSÄ PALAUTEATAAN PROMISEITA, AWAITISSA FUNKTION SUORITTAMINEN PYSÄHTYY, KUNNES VASTAUKSET SAADAAN 
+  try {
+    const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=Helsinki,FI&appid=665ecd56dfc08dbb50feb8b8f5034e28&units=metric&lang=fi");
+    const data = await response.json();
+    helData = data;
+    saa(helData);
+  } catch (error) {
+    // TÄMÄ VIESTI NÄYTETÄÄN ERRORIN SATTUESSA
+    document.getElementById("vastaus").innerHTML =
+      "<p>Helsingin tietoa ei pystytä hakemaan </p>" + error;
+  }
+}
+
+async function fetchWeatherTre() {
+  // TRY LOHKOA YRITETÄÄN SUORITTAA, SIELLÄ ENSIN DATA FETCHATAAN JA TEHDÄÄN JSONINKSI, LAITETAAN MUUTTUJAAN treData JA KUTSUTAAN DATALLA SAA FUNKTIOTA
+  // ASYNCISSÄ PALAUTEATAAN PROMISEITA, AWAITISSA FUNKTION SUORITTAMINEN PYSÄHTYY, KUNNES VASTAUKSET SAADAAN 
+  try {
+    const response = await fetch("https://api.openweathermap.org/data/2.5/weather?q=Tampere,FI&appid=665ecd56dfc08dbb50feb8b8f5034e28&units=metric&lang=fi");
+    const data = await response.json();
+    treData = data;
+    saa(treData);
+  } catch (error) {
+    // TÄMÄ VIESTI NÄYTETÄÄN ERRORIN SATTUESSA
+    document.getElementById("vastaus").innerHTML =
+      "<p>Helsingin tietoa ei pystytä hakemaan </p>" + error;
+  }
+}
+
+/*
+
+TÄSSÄ ON VAIN VERTAILUN VUOKSI TOTEUTETTU TOINEN FETCH FUNKTIO ILMAN ASYNC JA AWAIT
+
 function fetchWeatherHel() {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=Helsinki,FI&appid=665ecd56dfc08dbb50feb8b8f5034e28&units=metric&lang=fi")
+  fetch("https://api.openweathermap.org/data/2.5/weather?q=Helsinki,FI&appid=665ecd56dfc08dbb50feb8b8f5034e28&units=metric&lang=fi")
     // Muunnetaan vastaus JSON muotoon nuolinotaatiofunktiolla
 
     .then((response) => response.json())
@@ -66,30 +103,32 @@ function fetchWeatherHel() {
 
 function fetchWeatherTre() {
   fetch("https://api.openweathermap.org/data/2.5/weather?q=Tampere,FI&appid=665ecd56dfc08dbb50feb8b8f5034e28&units=metric&lang=fi")
-  // Muunnetaan vastaus JSON muotoon nuolinotaatiofunktiolla
+    // Muunnetaan vastaus JSON muotoon nuolinotaatiofunktiolla
 
-  .then((response) => response.json())
+    .then((response) => response.json())
 
-  // Käsitellään muunnettu (eli JSON muotoinen) vastaus
-  // Kutsutaan funktiota ja välitetään sille json-vastaus tapahtumat(responseJson)})
+    // Käsitellään muunnettu (eli JSON muotoinen) vastaus
+    // Kutsutaan funktiota ja välitetään sille json-vastaus tapahtumat(responseJson)})
 
-  .then((data) => {
-    treData = data;
-    saa(treData);
-  })
+    .then((data) => {
+      treData = data;
+      saa(treData);
+    })
 
-  // Jos tuli jokin virhe
-  .catch((error) => {
-    // TÄMÄ VIESTI NÄYTETÄÄN ERRORIN SATTUESSA
-    document.getElementById("vastaus").innerHTML =
-      "<p>Tampereen tietoa ei pystytä hakemaan </p>" + error;
-  });
-}
+    // Jos tuli jokin virhe
+    .catch((error) => {
+      // TÄMÄ VIESTI NÄYTETÄÄN ERRORIN SATTUESSA
+      document.getElementById("vastaus").innerHTML =
+        "<p>Tampereen tietoa ei pystytä hakemaan </p>" + error;
+    });
+} 
+
+*/
 
 // TÄSSÄ LUODAAN SAA FUNKTIO, JOSSA MOLEMMAT DATAT, ELI TAMPEREEN JA HELSINGIN FETCHIT TULEVAT SAMAAN PAIKKAAN. MUOTOILUISSA KÄYTETTY CSS LUOKKIA SEKÄ BOOTSTRAPIA
 
-function saa(){
-    document.getElementById("vastaus").innerHTML = `
+function saa() {
+  document.getElementById("vastaus").innerHTML = `
     <div class="centered weather-box">
       <div class="d-flex p-2 bd-highlight">
         <div class="m-5">
