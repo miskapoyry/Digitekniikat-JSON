@@ -1,14 +1,16 @@
+/* FONTTI MÄÄRITELTY BODYN SISÄLTÄVILLE */
 body{
     font-family:'Times New Roman', Times, serif,;
 }
-
+ 
+/* CONTAINERILLA KESKITETÄÄN ELEMENTTEJÄ JA LAITETAAN MAX LEVEYS 20 */
 .container {
     max-width: 90%;
     margin: 0 auto;
     padding: 20px;
 }
 
-
+/* HEADING JA DESCRIPTION TEKSTIT KESKITETÄÄN */
 .heading {
     text-align: center;
 }
@@ -17,17 +19,20 @@ body{
     text-align: center;
 }
 
+/* JSON KUVA KESKITETÄÄN */
 .JSONimage {
     width: 50%;
     display: flex;
     margin: 0 auto;
 }
 
+/* INFO TEKSTI KESKITETÄÄN JA BOLDATAAN */
 .info {
     text-align: center;
     font-weight: bold;
 }
 
+/* MEDIA QUERY, JOLLA PIENENNETÄÄN TEKSTIEN KOKOA PUHELIMILLA, JOTTA VASTAUKSET RESPONSIIVISIA */
 @media(max-width:425px){
     .listing {
         font-size: 13px;
@@ -35,6 +40,7 @@ body{
     }
     .description {
         font-size: smaller;
+        overflow-wrap: break-word;
     }
     .heading {
         font-size: 18px;
@@ -51,12 +57,19 @@ body{
     }
 }
 
+/* ISOMMILLA NÄYTÖILLÄ LAITETAAN LISTAAN PADDING VASEMMALLE */
 @media(min-width: 426px){
     .listing {
         padding-left: 20vw;
     }
 }
 
+/* TEKEE NAV ITEMIEN VÄLIIN TYHJÄÄ TILAA */
+.nav-item{
+    padding-right: 20px;
+}
+
+/* TÄSSÄ TEHDÄÄN TABLE SELKEÄKSI JA LAITEATAAN NIILLE BORDERIT, LEVEYS JA SHADOWIA */
 .table {
     border-collapse: collapse;
     margin-top: 20px;
@@ -69,25 +82,19 @@ body{
     padding: 10px;
 }
 
-.table th{
-    background-color: rgb(0, 56, 0);
-    color: white
-}
-
+/* YLEINEN TYYLI ELEMENTEILLE JOTKA HALUTAAN KESKITTÄÄ */
 .centered {
     display: flex;
     justify-content: center;
 }
 
+/* LUODAAN LAATIKKO SÄÄTILAN YMPÄRILLE */
 .weather-box{
     border-radius: 10px;
     box-shadow: 0px 0px 5px black;
 }
 
-.navbar-collapse.show + .navbar-brand{
-    display: none;
-}
-
+/* MUUTEATAAN NAVIN BG COLOR, FONTIN KOKO JA VÄRIT SELLAISEKSI, ETTÄ NIISTÄ SAA SELVÄÄ */
 .navbar {
     background: linear-gradient(90deg, #2C4A42, #4F6F52, #2C4A42);
     font-size: 18px;
@@ -102,6 +109,7 @@ body{
     transition: color 0.3s ease-in-out;
 }
 
+/* NAVIN MOBIILI LAYOUTIN SVG KUVA VALKOISEKSI */
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
