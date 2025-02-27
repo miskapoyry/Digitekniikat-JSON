@@ -64,9 +64,11 @@ body{
     }
 }
 
-/* TEKEE NAV ITEMIEN VÄLIIN TYHJÄÄ TILAA */
-.nav-item{
-    padding-right: 20px;
+/* TEKEE NAV ITEMIEN VÄLIIN TYHJÄÄ TILAA ISOMMILLA NÄYTÖILLÄ*/
+@media(min-width: 991px){
+    .nav-item{
+        padding-right: 20px;
+    }
 }
 
 /* TÄSSÄ TEHDÄÄN TABLE SELKEÄKSI JA LAITEATAAN NIILLE BORDERIT, LEVEYS JA SHADOWIA */
@@ -112,4 +114,13 @@ body{
 /* NAVIN MOBIILI LAYOUTIN SVG KUVA VALKOISEKSI */
 .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* KESKITETÄÄN JA POISTETAAN TURHA PADDING JA MARGIN HAMBURGER MENUSTA */
+@media (max-width: 990px) {
+    .navbar-nav {
+        margin-right: 0 !important;
+        padding-right: 0 !important;
+        text-align: center;
+    }
 }
