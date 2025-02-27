@@ -49,9 +49,11 @@ async function displayTrains(data) {
 
                 // MUUTTUJAT TAMPEREELLE SAAPUMISAJASTA -JA PÄIVÄSTÄ
                 let pvm = data[i].timeTableRows[j].scheduledTime;
+                // MUUTETAAN PÄIVÄ DATE OLIOKSI JA SE PUOLESTAAN SUOMALAISEEN MUOTOON
                 let paiva = new Date(pvm.substr(0, 10)).toLocaleDateString("fi-FI");
                 let aika = pvm.substr(11,5);
 
+                // TÄSSÄ MUODOSTETAAN VASTAUS TEKSTI MUUTTUJAAN
                 teksti.innerHTML += `
                 <p> <strong>${tCat} ${tType} (${tNumber})</strong><br/>
                 Kohteesta ${fromStation} ${lahtopaiva} kello ${lahtoaika} lähtenyt juna kohteeseen ${kohdeStation}</br>
